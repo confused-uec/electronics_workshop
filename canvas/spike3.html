@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Huwahuwa</title>
+</head>
+<body>
+<canvas id="cv" width="400" height="400">
+  Canvas is disabled.
+</canvas>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    var cv = $('#cv').get(0);
+    var c = cv.getContext('2d');
+    var angle = 0;
+    var timer;
+    var delay = 50;
+    var numberOfArc = 12;
+    function draw() {
+        c.clearRect(0,0,400,400);
+        for(var i = 0; i<numberOfArc; i++) {
+            c.beginPath();
+            c.moveTo(
+                200+100*Math.cos((-180/numberOfArc+360/numberOfArc*i)/180*Math.PI),
+                200+100*Math.sin((-180/numberOfArc+360/numberOfArc*i)/180*Math.PI)
+            );
+            c.quadraticCurveTo(
+                200+70*Math.cos(360/numberOfArc*i/180*Math.PI),
+                200+70*Math.sin(360/numberOfArc*i/180*Math.PI),
+                200+100*Math.cos((180/numberOfArc+360/numberOfArc*i)/180*Math.PI),
+                200+100*Math.sin((180/numberOfArc+360/numberOfArc*i)/180*Math.PI)
+            );
+            c.stroke();
+        }
+    }
+    draw();
+</script>
+</body>
+</html>
