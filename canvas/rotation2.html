@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>Rotation1</title>
+<title>Rotation2</title>
 <link rel="stylesheet" href="site.css" />
 </head>
 <body>
@@ -20,19 +20,22 @@
         c.clearRect(0,0,400,400);
         for(var i = 0; i<4; i++) {
             c.beginPath();
-            c.arc(200, 200, 100, (rotate_angle+i*90+15)/180*Math.PI , (rotate_angle+i*90+75)/180*Math.PI, false);
+            c.arc(200, 200, 100, (rotate_angle+i*90+5)/180*Math.PI , (rotate_angle+i*90+85)/180*Math.PI, false);
             c.stroke();
             c.beginPath();
             c.moveTo(
-                200+100*Math.cos((rotate_angle+i*90+345)/180*Math.PI),
-                200+100*Math.sin((rotate_angle+i*90+345)/180*Math.PI)
+                200+100*Math.cos((rotate_angle+i*90+355)/180*Math.PI), 
+                200+100*Math.sin((rotate_angle+i*90+355)/180*Math.PI)
             );
-            c.quadraticCurveTo(
-                200+50*Math.cos((rotate_angle+i*90)/180*Math.PI),
-                200+50*Math.sin((rotate_angle+i*90)/180*Math.PI),
-                200+100*Math.cos((rotate_angle+i*90+15)/180*Math.PI),
-                200+100*Math.sin((rotate_angle+i*90+15)/180*Math.PI)
+            c.lineTo(
+                200+100*Math.cos((rotate_angle+i*90+5)/180*Math.PI), 
+                200+100*Math.sin((rotate_angle+i*90+5)/180*Math.PI)
             );
+            c.lineTo(
+                200+80*Math.cos((rotate_angle+i*90)/180*Math.PI), 
+                200+80*Math.sin((rotate_angle+i*90)/180*Math.PI)
+            );
+            c.closePath();
             c.stroke();
         }
     }
