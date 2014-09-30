@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>Rotation2</title>
+<title>Rotation4</title>
 </head>
 <body>
 <canvas id="cv" width="400" height="400">
@@ -15,26 +15,22 @@
     var angle = 0;
     var timer;
     var delay = 50;
+    var numberOfSpike = 18;
     function draw(rotate_angle) {
         c.clearRect(0,0,400,400);
-        for(var i = 0; i<4; i++) {
+        for(var i = 0; i<numberOfSpike; i++) {
             c.beginPath();
-            c.arc(200, 200, 100, (rotate_angle+i*90+5)/180*Math.PI , (rotate_angle+i*90+85)/180*Math.PI, false);
+            c.arc(200, 200, 100, (rotate_angle+360/numberOfSpike*i)/180*Math.PI , (rotate_angle+360/numberOfSpike*(i+1))/180*Math.PI, false);
             c.stroke();
             c.beginPath();
             c.moveTo(
-                200+100*Math.cos((rotate_angle+i*90+355)/180*Math.PI), 
-                200+100*Math.sin((rotate_angle+i*90+355)/180*Math.PI)
+                200+120*Math.cos((rotate_angle+360/numberOfSpike*i)/180*Math.PI), 
+                200+120*Math.sin((rotate_angle+360/numberOfSpike*i)/180*Math.PI)
             );
             c.lineTo(
-                200+100*Math.cos((rotate_angle+i*90+5)/180*Math.PI), 
-                200+100*Math.sin((rotate_angle+i*90+5)/180*Math.PI)
+                200+80*Math.cos((rotate_angle+360/numberOfSpike*i)/180*Math.PI), 
+                200+80*Math.sin((rotate_angle+360/numberOfSpike*i)/180*Math.PI)
             );
-            c.lineTo(
-                200+80*Math.cos((rotate_angle+i*90)/180*Math.PI), 
-                200+80*Math.sin((rotate_angle+i*90)/180*Math.PI)
-            );
-            c.closePath();
             c.stroke();
         }
     }

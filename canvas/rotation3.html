@@ -35,7 +35,7 @@
     }
     function loop() {
         draw(angle);
-        angle++;
+        angle=(angle+1)%360;
         clearTimeout(timer);
         timer = setTimeout(loop,delay);
     }

@@ -27,8 +27,8 @@
                 200+100*Math.sin((rotate_angle+i*90+345)/180*Math.PI)
             );
             c.quadraticCurveTo(
-                200+50*Math.cos((rotate_angle+i*90)/180*Math.PI),
-                200+50*Math.sin((rotate_angle+i*90)/180*Math.PI),
+                200+60*Math.cos((rotate_angle+i*90)/180*Math.PI),
+                200+60*Math.sin((rotate_angle+i*90)/180*Math.PI),
                 200+100*Math.cos((rotate_angle+i*90+15)/180*Math.PI),
                 200+100*Math.sin((rotate_angle+i*90+15)/180*Math.PI)
             );
@@ -37,7 +37,7 @@
     }
     function loop() {
         draw(angle);
-        angle++;
+        angle=(angle+1)%360;
         clearTimeout(timer);
         timer = setTimeout(loop,delay);
     }

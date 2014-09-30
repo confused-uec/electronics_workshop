@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Letter</title>
+</head>
+<body>
+<canvas id="cv" width="400" height="400">
+  Canvas is disabled.
+</canvas>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    var cv = $('#cv').get(0);
+    var c = cv.getContext('2d');
+    function draw() {
+        c.clearRect(0,0,400,400);
+        c.strokeStyle =  '#000';
+        c.font = "180px Hiragino Mincho ProN"
+        c.strokeText("イ", 110, 290)
+    }
+    draw();
+</script>
+</body>
+</html>
