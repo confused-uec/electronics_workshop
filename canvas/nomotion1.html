@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>NoMotion1</title>
+</head>
+<body>
+<canvas id="cv" width="400" height="400">
+  Canvas is disabled.
+</canvas>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    var cv = $('#cv').get(0);
+    var c = cv.getContext('2d');
+    var angle = 0;
+    var timer;
+    var delay = 50;
+    var numberOfSpike = 30;
+    function draw() {
+        c.clearRect(0,0,400,400);
+        for(var i = 0; i<numberOfSpike; i++) {
+            c.beginPath();
+            c.moveTo(
+                200+100*Math.cos((-180/numberOfSpike+360/numberOfSpike*i)/180*Math.PI),
+                200+100*Math.sin((-180/numberOfSpike+360/numberOfSpike*i)/180*Math.PI)
+            );
+            c.lineTo(
+                200+120*Math.cos((0+360/numberOfSpike*i)/180*Math.PI),
+                200+120*Math.sin((0+360/numberOfSpike*i)/180*Math.PI)
+            );            
+            c.lineTo(
+                200+100*Math.cos((180/numberOfSpike+360/numberOfSpike*i)/180*Math.PI),
+                200+100*Math.sin((180/numberOfSpike+360/numberOfSpike*i)/180*Math.PI)
+            );            
+            c.stroke();
+        }
+    }
+    draw();
+</script>
+</body>
+</html>
