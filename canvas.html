@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>HTML5</title>
+<link rel="stylesheet" href="site.css" />
+</head>
+<body>
+<canvas id="cv" width="400" height="400">
+  Canvas is disabled.
+</canvas>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    var cv = $('#cv').get(0);
+    var c = cv.getContext('2d');
+    var angle = 0;
+    var timer;
+    var delay = 50;
+    function draw(rotate_angle) {
+        c.clearRect(0,0,400,400);
+        for(var i = 0; i<4; i++) {
+            c.beginPath();
+            c.arc(200, 200, 100, (rotate_angle+i*90+15)/180*Math.PI , (rotate_angle+i*90+75)/180*Math.PI, false);
+            c.stroke();
+            c.beginPath();
+            c.moveTo(
+                200+100*Math.cos((rotate_angle+i*90+345)/180*Math.PI),
+                200+100*Math.sin((rotate_angle+i*90+345)/180*Math.PI)
+            );
+            c.quadraticCurveTo(
+                200+50*Math.cos((rotate_angle+i*90)/180*Math.PI),
+                200+50*Math.sin((rotate_angle+i*90)/180*Math.PI),
+                200+100*Math.cos((rotate_angle+i*90+15)/180*Math.PI),
+                200+100*Math.sin((rotate_angle+i*90+15)/180*Math.PI)
+            );
+            c.stroke();
+        }
+    }
+    function loop() {
+        draw(angle);
+        angle++;
+        clearTimeout(timer);
+        timer = setTimeout(loop,delay);
+    }
+    loop(0);
+</script>
+</body>
+</html>
