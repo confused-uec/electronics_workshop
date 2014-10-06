@@ -12,34 +12,34 @@
 <script>
     var cv = $('#cv').get(0);
     var c = cv.getContext('2d');
-    var angle = 0;
     var timer;
     var delay = 50;
     var numberOfSpike = 18;
-    function draw(rotate_angle) {
-        c.clearRect(0,0,400,400);
+    function draw() {
+        c.clearRect(-200,-200,400,400);
         for(var i = 0; i<numberOfSpike; i++) {
             c.beginPath();
-            c.arc(200, 200, 100, (rotate_angle+360/numberOfSpike*i)/180*Math.PI , (rotate_angle+360/numberOfSpike*(i+1))/180*Math.PI, false);
+            c.arc(0, 0, 100, (360/numberOfSpike*i)/180*Math.PI , (360/numberOfSpike*(i+1))/180*Math.PI, false);
             c.stroke();
             c.beginPath();
             c.moveTo(
-                200+120*Math.cos((rotate_angle+360/numberOfSpike*i)/180*Math.PI), 
-                200+120*Math.sin((rotate_angle+360/numberOfSpike*i)/180*Math.PI)
+                120*Math.cos((360/numberOfSpike*i)/180*Math.PI), 
+                120*Math.sin((360/numberOfSpike*i)/180*Math.PI)
             );
             c.lineTo(
-                200+80*Math.cos((rotate_angle+360/numberOfSpike*i)/180*Math.PI), 
-                200+80*Math.sin((rotate_angle+360/numberOfSpike*i)/180*Math.PI)
+                80*Math.cos((360/numberOfSpike*i)/180*Math.PI), 
+                80*Math.sin((360/numberOfSpike*i)/180*Math.PI)
             );
             c.stroke();
         }
     }
     function loop() {
-        draw(angle);
-        angle=(angle+1)%360;
+        draw();
+        c.rotate(Math.PI/180);
         clearTimeout(timer);
         timer = setTimeout(loop,delay);
     }
+    c.translate(200,200);
     loop(0);
 </script>
 </body>

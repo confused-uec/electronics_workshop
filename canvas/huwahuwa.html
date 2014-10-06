@@ -17,23 +17,30 @@
     var delay = 50;
     var numberOfArc = 12;
     function draw() {
-        c.clearRect(0,0,400,400);
+        c.clearRect(-200,-200,400,400);
         for(var i = 0; i<numberOfArc; i++) {
             c.beginPath();
             c.moveTo(
-                200+100*Math.cos((-180/numberOfArc+360/numberOfArc*i)/180*Math.PI),
-                200+100*Math.sin((-180/numberOfArc+360/numberOfArc*i)/180*Math.PI)
+                100*Math.cos((-180/numberOfArc+360/numberOfArc*i)/180*Math.PI),
+                100*Math.sin((-180/numberOfArc+360/numberOfArc*i)/180*Math.PI)
             );
             c.quadraticCurveTo(
-                200+130*Math.cos(360/numberOfArc*i/180*Math.PI),
-                200+130*Math.sin(360/numberOfArc*i/180*Math.PI),
-                200+100*Math.cos((180/numberOfArc+360/numberOfArc*i)/180*Math.PI),
-                200+100*Math.sin((180/numberOfArc+360/numberOfArc*i)/180*Math.PI)
+                130*Math.cos(360/numberOfArc*i/180*Math.PI),
+                130*Math.sin(360/numberOfArc*i/180*Math.PI),
+                100*Math.cos((180/numberOfArc+360/numberOfArc*i)/180*Math.PI),
+                100*Math.sin((180/numberOfArc+360/numberOfArc*i)/180*Math.PI)
             );
             c.stroke();
         }
     }
-    draw();
+    function loop() {
+        draw();
+        c.rotate(Math.PI/180);
+        clearTimeout(timer);
+        timer = setTimeout(loop,delay);
+    }
+    c.translate(200,200);
+    loop(0);
 </script>
 </body>
 </html>

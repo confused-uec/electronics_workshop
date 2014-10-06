@@ -12,13 +12,22 @@
 <script>
     var cv = $('#cv').get(0);
     var c = cv.getContext('2d');
+    var timer;
+    var delay = 50;
     function draw() {
-        c.clearRect(0,0,400,400);
+        c.clearRect(-200,-200,400,400);
         c.strokeStyle =  '#000';
         c.font = "180px Hiragino Mincho ProN"
-        c.strokeText("イ", 110, 290)
+        c.strokeText("イ", -90, 75)
     }
-    draw();
+    function loop() {
+        draw();
+        c.rotate(Math.PI/180);
+        clearTimeout(timer);
+        timer = setTimeout(loop,delay);
+    }
+    c.translate(200,200);
+    loop(0);
 </script>
 </body>
 </html>

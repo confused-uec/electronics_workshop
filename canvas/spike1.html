@@ -17,25 +17,32 @@
     var delay = 50;
     var numberOfSpike = 30;
     function draw() {
-        c.clearRect(0,0,400,400);
+        c.clearRect(-200,-200,400,400);
         for(var i = 0; i<numberOfSpike; i++) {
             c.beginPath();
             c.moveTo(
-                200+100*Math.cos((-180/numberOfSpike+360/numberOfSpike*i)/180*Math.PI),
-                200+100*Math.sin((-180/numberOfSpike+360/numberOfSpike*i)/180*Math.PI)
+                100*Math.cos((-180/numberOfSpike+360/numberOfSpike*i)/180*Math.PI),
+                100*Math.sin((-180/numberOfSpike+360/numberOfSpike*i)/180*Math.PI)
             );
             c.lineTo(
-                200+120*Math.cos((0+360/numberOfSpike*i)/180*Math.PI),
-                200+120*Math.sin((0+360/numberOfSpike*i)/180*Math.PI)
+                120*Math.cos((0+360/numberOfSpike*i)/180*Math.PI),
+                120*Math.sin((0+360/numberOfSpike*i)/180*Math.PI)
             );            
             c.lineTo(
-                200+100*Math.cos((180/numberOfSpike+360/numberOfSpike*i)/180*Math.PI),
-                200+100*Math.sin((180/numberOfSpike+360/numberOfSpike*i)/180*Math.PI)
+                100*Math.cos((180/numberOfSpike+360/numberOfSpike*i)/180*Math.PI),
+                100*Math.sin((180/numberOfSpike+360/numberOfSpike*i)/180*Math.PI)
             );            
             c.stroke();
         }
     }
-    draw();
+    function loop() {
+        draw();
+        c.rotate(Math.PI/180);
+        clearTimeout(timer);
+        timer = setTimeout(loop,delay);
+    }
+    c.translate(200,200);
+    loop(0);
 </script>
 </body>
 </html>
