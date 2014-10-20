@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Cursor</title>
+</head>
+<body>
+<canvas id="cv" width="600" height="600">
+  Canvas is disabled.
+</canvas>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    var cv = $('#cv').get(0);
+    var c = cv.getContext('2d');
+    var angle = 0;
+    var timer;
+    var delay = 50;
+    var numberOfSpike = 3;
+    function draw() {
+        c.clearRect(-300,-300,600,600);
+        for(var i = 0; i<numberOfSpike; i++) {
+            c.beginPath();
+            c.moveTo(-250,-20);
+            c.lineTo(-120, -20);            
+            c.lineTo(-120, -70);  
+            c.lineTo(-50, 0);
+            c.lineTo(-120, 70);  
+            c.lineTo(-120, 20);
+            c.lineTo(-250, 20);
+            c.lineTo(-250, -20);
+            c.stroke();
+            c.rotate(Math.PI*(360/numberOfSpike)/180)
+        }
+    }
+    function loop() {
+        draw();
+        c.rotate(Math.PI/180);
+        clearTimeout(timer);
+        timer = setTimeout(loop,delay);
+    }
+    c.translate(300,300);
+    loop(0);
+</script>
+</body>
+</html>

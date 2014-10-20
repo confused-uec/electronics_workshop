@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Emulator</title>
+</head>
+<body>
+<canvas id="cv" width="400" height="400">
+  Canvas is disabled.
+</canvas>
+<script src="jquery.js"></script>
+<script>
+    var c; //コンテキストオブジェクト
+    var angle = 0;
+    var timer;
+    var delay = 50;
+
+	var array_length = 360;
+    var x_array = new Array(array_length);
+    var y_array = new Array(array_length);
+    
+    main();
+    function main(){
+    	init_array();
+    	init_canvas();
+	    loop();
+    }
+
+    function init_canvas() {
+    	var cv = $('#cv').get(0);	
+    	c = cv.getContext('2d');
+    	c.translate(200,200);
+    }
+    function init_array() {
+    /*
+	    for(var i = 0; i<array_length; i++) {
+	    	x_array[i] = i/360*(2*Math.PI);
+    		y_array[i] = i/360*(2*Math.PI);
+    	}
+    */
+	    for(var i = 0; i<45; i++) {
+	    	x_array[i] = 100;
+    		y_array[i] = (0-i)/45*100;
+    	}
+	    for(var i = 45; i<135; i++) {
+	    	x_array[i] = (90-i)/45*100;
+    		y_array[i] = -100;
+    	}
+	    for(var i = 135; i<225; i++) {
+	    	x_array[i] = -100;
+    		y_array[i] = (i-180)/45*100;
+    	}
+	    for(var i = 225; i<315; i++) {
+	    	x_array[i] = (i-270)/45*100;
+    		y_array[i] = 100;
+    	}
+	    for(var i = 315; i<360; i++) {
+	    	x_array[i] = 100;
+    		y_array[i] = (360-i)/45*100;
+    	}
+
+	    for(var i = 0; i<array_length; i++) {
+	    	x_array[i] = Math.asin(x_array[i]/100);
+    		y_array[i] = Math.asin(y_array[i]/100);
+    	}
+    }
+    function draw() {
+    	c.beginPath();
+    	c.moveTo(100*Math.sin(x_array[0]),100*Math.sin(y_array[0]));
+        for(var i = 1; i<array_length; i++) {
+            c.lineTo(100*Math.sin(x_array[i]),100*Math.sin(y_array[i]));
+        }
+        c.stroke();
+    }
+    function loop() {
+        c.clearRect(-200,-200,400,400);
+        draw();
+        //c.rotate(Math.PI/180);
+        clearTimeout(timer);
+        timer = setTimeout(loop,delay);
+    }
+</script>
+</body>
+</html>
